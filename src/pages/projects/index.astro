@@ -179,20 +179,31 @@ const anni = [...new Set(progetti.flatMap(yearsOf))].sort((a, b) => b - a);
 </script>
 
 <script>
-  // Hover su un progetto con foto: isola quel progetto (gli altri sfumano) e mostra foto + nome al centro.
+  // Hover su un progetto con foto: isola quel progetto (gli altri sfumano) e mostra foto + nome a sinistra.
+  // Le anteprime sono PRECARICATE così lo swap è immediato; l'anteprima resta visibile mentre ci si
+  // muove tra i progetti (si nasconde solo uscendo dall'elenco) → niente lag né flash tra una foto e l'altra.
+  const list = document.getElementById('works-index');
   const preview = document.querySelector('.proj-preview');
   const pimg = preview?.querySelector('img');
   const pname = preview?.querySelector('.pp-name');
-  if (preview && pimg && pname) {
-    document.querySelectorAll('#works-index .wi-item[data-img]').forEach((li) => {
+  if (list && preview && pimg && pname) {
+    const cache = {};
+    const warm = (src) => { if (src && !cache[src]) { const im = new Image(); im.decoding = 'async'; im.src = src; cache[src] = im; } };
+    const rows = Array.from(list.querySelectorAll('.wi-item[data-img]'));
+    // Precarica tutte le immagini di anteprima (quando il browser è libero)
+    const preload = () => rows.forEach((li) => warm(li.getAttribute('data-img')));
+    if ('requestIdleCallback' in window) requestIdleCallback(preload); else setTimeout(preload, 200);
+
+    const show = (li) => {
       const src = li.getAttribute('data-img');
-      const name = li.getAttribute('data-title') || '';
-      li.addEventListener('mouseenter', () => {
-        if (pimg.getAttribute('src') !== src) pimg.setAttribute('src', src);
-        pname.textContent = name;
-        preview.classList.add('is-on');
-      });
-      li.addEventListener('mouseleave', () => preview.classList.remove('is-on'));
-    });
+      if (!src) return;
+      warm(src);
+      if (pimg.getAttribute('src') !== src) pimg.setAttribute('src', src);
+      pname.textContent = li.getAttribute('data-title') || '';
+      preview.classList.add('is-on');
+    };
+    rows.forEach((li) => li.addEventListener('mouseenter', () => show(li)));
+    // Si nasconde solo quando il mouse lascia TUTTO l'elenco (non passando da un progetto all'altro)
+    list.addEventListener('mouseleave', () => preview.classList.remove('is-on'));
   }
 </script>

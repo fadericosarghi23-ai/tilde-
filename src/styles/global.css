@@ -74,7 +74,7 @@ em{font-style:italic}
 .site-header:not([data-transparent="true"])::before{content:"";position:absolute;inset:0 0 auto;height:calc(var(--header-h) + 1.25rem);background:linear-gradient(#fff 58%,rgba(255,255,255,0));pointer-events:none;z-index:-1}
 body.menu-open .site-header::before{opacity:0}
 .site-header .container{display:flex;align-items:center;justify-content:center;height:100%}
-.site-header .brand{position:fixed;top:calc(var(--header-h) / 2);left:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;background:none;border:0;padding:0;cursor:pointer;pointer-events:auto;color:inherit;transition:color .25s,top .5s cubic-bezier(.22,1,.36,1),left .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)}
+.site-header .brand{position:fixed;top:calc(var(--header-h) / 2);left:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;background:none;border:0;padding:0;cursor:pointer;pointer-events:auto;color:inherit;transition:color .25s,opacity .4s ease,top .5s cubic-bezier(.22,1,.36,1),left .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)}
 .brand-mark{font-family:inherit;font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1;letter-spacing:-.015em;font-weight:300;white-space:nowrap;transition:font-size .5s cubic-bezier(.22,1,.36,1)}
 .brand-mark strong{font-weight:700}
 .site-header.is-transparent{color:#fff}
@@ -85,6 +85,9 @@ body.menu-open .site-header::before{opacity:0}
 /* HOME (hero): logo al centro dello schermo (verticale) — splash, più grande */
 .site-header[data-transparent="true"] .brand{top:50%}
 .site-header[data-transparent="true"] .brand-mark{font-size:clamp(2.4rem,6vw,4.2rem)}
+/* HOME: il logo resta fisso al centro dell'hero ma SFUMA oltre l'hero, così non si accavalla al footer (non si sposta, svanisce) */
+body.scrolled .site-header[data-transparent="true"] .brand{opacity:0;pointer-events:none}
+body.menu-open .site-header[data-transparent="true"] .brand{opacity:1;pointer-events:auto}
 /* MENÙ APERTO: logo resta nero e leggibile sul vetro chiaro */
 body.menu-open .site-header{color:var(--ink)}
 body.menu-open .site-header .brand{left:50%;transform:translate(-50%,-50%);text-shadow:none}
