@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHead from '../components/PageHead.astro';
+import { site } from '../data/site';
+
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Cookie policy', href: '/cookie-policy/' }];
+---
+<Layout title={`Cookie policy | ${site.nome}`} description={`Cookie policy for the ${site.nome} website: no profiling cookies.`} crumbs={crumbs}>
+<PageHead crumbs={crumbs} title="Cookie policy"> <p class="lead mt-2">This site respects your privacy: no profiling cookies, no advertising trackers.</p> </PageHead>
+<section class="section"> <div class="container narrow prose"> <h2>Cookies used</h2> <p>The {site.nome} website <strong>does not install profiling cookies or third-party analytics cookies</strong>. For this reason a consent banner is not required.</p> <p>Typefaces are hosted directly on our server, with no links to external services.</p> <h2>Third-party content and links</h2> <p>External links on the site (for example Google Maps for directions or the studio's social profiles) lead to third-party sites, which apply their own privacy and cookie policies.</p> <h2>Managing from the browser</h2> <p>You can delete or block cookies at any time from your browser settings.</p> <h2>Contact</h2> <p>For any questions write to <a href={`mailto:${site.email}`}>{site.email}</a>.</p> </div> </section>
+</Layout>

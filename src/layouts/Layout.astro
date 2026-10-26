@@ -1,0 +1,177 @@
+---
+/**
+ * Layout unico: <head> SEO (meta, Open Graph, Twitter, geo, JSON-LD @graph), header,
+ * footer e lo script condiviso (header che diventa pieno, menu mobile, reveal con
+ * IntersectionObserver) ripreso alla lettera dal sito sorgente.
+ */
+import '@fontsource-variable/open-sans';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, abs } from '../data/site';
+import { team } from '../data/team';
+import { servizi } from '../data/servizi';
+import type { Crumb } from '../components/Breadcrumb.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  /** tipo schema.org della pagina */
+  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage' | 'ItemPage';
+  ogType?: 'website' | 'article';
+  /** percorso dell'immagine Open Graph (1200x630) */
+  ogImage?: string;
+  noindex?: boolean;
+  transparent?: boolean;
+  crumbs?: Crumb[];
+  /** nodi JSON-LD aggiuntivi della pagina */
+  ld?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  pageType = 'WebPage',
+  ogType = 'website',
+  ogImage = '/img/tilde/terraplen/f2.webp',
+  noindex = false,
+  transparent = false,
+  crumbs,
+  ld = [],
+} = Astro.props;
+
+const url = abs(Astro.url.pathname);
+const og = abs(ogImage);
+const ORG = abs('/#organizzazione');
+const geo = site.geo;
+
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': ['ProfessionalService', 'LocalBusiness'],
+    '@id': ORG,
+    name: site.nome,
+    ...(site.ragioneSociale ? { legalName: site.ragioneSociale } : {}),
+    alternateName: site.nomiAlternativi,
+    description: site.descrizione,
+    slogan: site.slogan,
+    url: abs('/'),
+    logo: { '@type': 'ImageObject', url: abs('/img/logo/logo.svg'), caption: `Logo ${site.nome}` },
+    email: site.email,
+    ...(site.telefonoE164 ? { telephone: site.telefonoE164 } : {}),
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.indirizzo.via,
+      postalCode: site.indirizzo.cap,
+      addressLocality: site.indirizzo.citta,
+      addressRegion: site.indirizzo.provincia,
+      addressCountry: site.indirizzo.paese,
+    },
+    ...(geo ? { geo: { '@type': 'GeoCoordinates', latitude: geo.lat, longitude: geo.lng } } : {}),
+    hasMap: site.mapsUrl,
+    ...(site.orari.length
+      ? {
+          openingHoursSpecification: site.orari.map((o) => ({
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: o.days.map((d) => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][d]),
+            opens: o.opens,
+            closes: o.closes,
+          })),
+        }
+      : {}),
+    areaServed: site.areeServite.map((a) => ({ '@type': a.tipo, name: a.nome })),
+    knowsAbout: site.competenze,
+    sameAs: site.social.map((s) => s.url),
+    employee: team.map((m) => ({
+      '@type': 'Person',
+      '@id': abs(`/studio/#${m.id}`),
+      name: m.nome,
+      jobTitle: m.ruolo,
+      image: abs(m.foto.src),
+      worksFor: { '@id': ORG },
+    })),
+    numberOfEmployees: { '@type': 'QuantitativeValue', value: team.length },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${site.nome} services`,
+      itemListElement: servizi.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: s.nome, description: s.breve },
+      })),
+    },
+  },
+  { '@type': 'WebSite', '@id': abs('/#sito'), url: abs('/'), name: site.nome, inLanguage: 'en', publisher: { '@id': ORG } },
+  {
+    '@type': pageType,
+    '@id': `${url}#pagina`,
+    url,
+    name: title,
+    description,
+    inLanguage: 'en',
+    isPartOf: { '@id': abs('/#sito') },
+    about: { '@id': ORG },
+    primaryImageOfPage: { '@type': 'ImageObject', url: og },
+    ...(crumbs ? { breadcrumb: { '@id': `${url}#breadcrumb` } } : {}),
+  },
+  ...(crumbs
+    ? [
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${url}#breadcrumb`,
+          itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: abs(c.href) })),
+        },
+      ]
+    : []),
+  ...ld,
+];
+const jsonld = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+---
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{title}</title>
+<meta name="description" content={description}>
+<link rel="canonical" href={url}>
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}>
+<meta name="theme-color" content={site.themeColor}>
+<meta name="author" content={site.nome}>
+<meta name="geo.region" content={site.geoRegion}>
+<meta name="geo.placename" content={site.indirizzo.citta}>
+{geo && <meta name="geo.position" content={`${geo.lat};${geo.lng}`}>}
+{geo && <meta name="ICBM" content={`${geo.lat}, ${geo.lng}`}>}
+<meta property="og:type" content={ogType}>
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content={site.nome}>
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={url}>
+<meta property="og:image" content={og}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content={`${site.nome} — ${site.attivita}`}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={og}>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="sitemap" href="/sitemap-index.xml">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
+<script type="application/ld+json" set:html={jsonld} />
+<script is:inline>document.documentElement.classList.remove('no-js')</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<Header transparent={transparent} />
+<main id="main">
+<slot />
+</main>
+<Footer />
+<script>
+const header=document.querySelector('.site-header');if(header){const t=header.dataset.transparent==='true';const upd=()=>{const y=window.scrollY;const solid=!t||y>40;header.classList.toggle('is-solid',solid);header.classList.toggle('is-transparent',!solid);document.body.classList.toggle('scrolled',y>40)};upd();window.addEventListener('scroll',upd,{passive:true})}
+  const trigger=document.querySelector('.brand');const menu=document.getElementById('mobile-menu');if(trigger&&menu){const set=(open)=>{trigger.setAttribute('aria-expanded',String(open));trigger.setAttribute('aria-label',open?'Close menu':'Open menu');menu.classList.toggle('is-open',open);document.body.classList.toggle('menu-open',open)};trigger.addEventListener('click',()=>set(!menu.classList.contains('is-open')));menu.addEventListener('click',(e)=>{if(e.target===menu)set(false)});menu.querySelectorAll('a').forEach((a)=>a.addEventListener('click',()=>set(false)));document.addEventListener('keydown',(e)=>{if(e.key==='Escape')set(false)})}
+  const io=new IntersectionObserver((es)=>es.forEach((en)=>{if(en.isIntersecting){en.target.classList.add('is-in');io.unobserve(en.target)}}),{rootMargin:'0px 0px -8% 0px'});document.querySelectorAll('.reveal').forEach((el)=>io.observe(el));
+</script>
+</body>
+</html>

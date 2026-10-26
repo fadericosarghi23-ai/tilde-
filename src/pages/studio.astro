@@ -1,0 +1,116 @@
+---
+/**
+ * Studio (about): layout a 3 colonne come il sorgente — i due fondatori ai LATI (foto + bio) e al
+ * CENTRO Awards, People e Press. In alto intro + manifesto. Contenuti reali di tìlde studio, EN.
+ */
+import Layout from '../layouts/Layout.astro';
+import Picture from '../components/Picture.astro';
+import { studioIntro, studioStatement, fondatori, collaboratori, stampa, premiAccademici } from '../data/team';
+import { progetti } from '../data/progetti';
+
+const title = 'Studio | tìlde studio — architects in Modena';
+const description = 'tìlde studio: a co-founded architectural practice by Pedro Escoriza Torralbo and Renato Righi, with offices in Modena and Seville, competition awards, a network of collaborators and press.';
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Studio', href: '/studio/' }];
+
+const [pedro, renato] = fondatori;
+// Competition awards derived from the projects (nota with prize/finalist/mention)
+const premiConcorso = progetti.filter((p) => p.nota && /prize|finalist|mention/i.test(p.nota));
+---
+<Layout title={title} description={description} pageType="AboutPage" crumbs={crumbs}>
+  <div class="container studio-wrap">
+    <h1 class="sr-only">Studio</h1>
+
+    <div class="studio-top reveal">
+      <blockquote class="studio-statement">{studioStatement}</blockquote>
+      <p class="studio-lead">{studioIntro}</p>
+    </div>
+
+    <div class="studio-main reveal">
+      <article class="founder a-pedro" id={pedro.id}>
+        <div class="founder-photo"><Picture img={pedro.foto} sizes="(min-width:900px) 32vw, 100vw" /></div>
+        <h2 class="founder-name">{pedro.nome}</h2>
+        <p class="founder-role">{pedro.ruolo}</p>
+        <p class="founder-bio">{pedro.bio}</p>
+      </article>
+
+      <article class="founder a-renato" id={renato.id}>
+        <div class="founder-photo"><Picture img={renato.foto} sizes="(min-width:900px) 32vw, 100vw" /></div>
+        <h2 class="founder-name">{renato.nome}</h2>
+        <p class="founder-role">{renato.ruolo}</p>
+        <p class="founder-bio">{renato.bio}</p>
+      </article>
+
+      <div class="studio-center a-center">
+        {premiConcorso.length > 0 && (
+          <section class="studio-sec">
+            <h2 class="col-h">Awards</h2>
+            <ul class="mini-list">
+              {premiConcorso.map((p) => (
+                <li><span class="mini-a">{p.titolo}</span> — {p.nota}, {p.luogo} <span class="mini-y">{p.anno}</span></li>
+              ))}
+              {premiAccademici.map((p) => (
+                <li><span class="mini-a">{p.titolo}</span> — {p.ente} <span class="mini-y">{p.anno}</span></li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <section class="studio-sec">
+          <h2 class="col-h">People</h2>
+          <ul class="people-list">{collaboratori.map((n) => <li>{n}</li>)}</ul>
+        </section>
+
+        {stampa.length > 0 && (
+          <section class="studio-sec">
+            <h2 class="col-h">Press</h2>
+            <ul class="press-list">
+              {stampa.map((s) => (
+                <li>
+                  <a href={s.href} target="_blank" rel="noopener">
+                    <span class="mini-a">{s.fonte}</span> <span class="press-t">{s.titolo}</span> <span class="mini-y">{s.data}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  .studio-wrap { max-width: none; padding-top: calc(var(--header-h) + 2.5rem); padding-bottom: 4rem; padding-inline: clamp(1.5rem, 4vw, 4.5rem); }
+  .studio-top { max-width: 54rem; margin: 0 auto; text-align: center; }
+  .studio-statement { margin: 0 0 1.4rem; font-size: clamp(1.5rem, 3.2vw, 2.1rem); line-height: 1.3; font-weight: 600; font-style: normal; letter-spacing: -.01em; }
+  .studio-lead { font-size: 1.05rem; line-height: 1.65; margin: 0; color: #444; }
+
+  /* 3-col: founders on the sides, awards/people/press in the middle */
+  .studio-main { display: grid; gap: 2.5rem; margin-top: 3rem; }
+  @media (min-width: 900px) {
+    .studio-main { grid-template-columns: 1fr 1.1fr 1fr; gap: 3rem; align-items: start; grid-template-areas: "pedro center renato"; }
+    .a-pedro { grid-area: pedro; }
+    .a-center { grid-area: center; }
+    .a-renato { grid-area: renato; }
+  }
+  .founder-photo { aspect-ratio: 4 / 3; overflow: hidden; background: #f2f2f2; }
+  .founder-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); display: block; }
+  .founder-name { font-size: 1.2rem; font-weight: 700; margin: .9rem 0 0; }
+  .founder-role { color: #6b6b6b; font-size: .88rem; margin: .15rem 0 .7rem; }
+  .founder-bio { line-height: 1.6; font-size: .95rem; margin: 0; }
+
+  .studio-sec { margin-bottom: 2.25rem; }
+  .studio-sec:last-child { margin-bottom: 0; }
+  .col-h { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: #8a8a8a; padding-bottom: .5rem; margin: 0 0 1rem; border-bottom: 1px solid rgba(10,10,10,.12); }
+  .people-list { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 1.5rem; font-size: .9rem; }
+  .people-list li { break-inside: avoid; padding: .22rem 0; }
+  .mini-list { list-style: none; margin: 0; padding: 0; font-size: .9rem; }
+  .mini-list li { padding: .3rem 0; border-top: 1px solid rgba(10,10,10,.08); line-height: 1.4; }
+  .mini-a { font-weight: 600; }
+  .mini-y { color: #8a8a8a; }
+  .press-list { list-style: none; margin: 0; padding: 0; font-size: .9rem; }
+  .press-list li { padding: .35rem 0; border-top: 1px solid rgba(10,10,10,.08); }
+  .press-list a { color: inherit; text-decoration: none; display: block; }
+  .press-list a:hover .press-t, .press-list a:focus-visible .press-t { text-decoration: underline; text-underline-offset: 3px; }
+  .press-t { color: #3a3a3a; }
+</style>

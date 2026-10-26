@@ -1,0 +1,31 @@
+---
+/**
+ * Header fisso stile sorgente: logo a sinistra, 3 voci a destra (minuscole, sottolineatura
+ * su hover e pagina attiva). transparent = sopra una foto (home): parte trasparente con logo
+ * chiaro e diventa pieno dopo 40px di scroll (script in Layout.astro). Loghi: due file delle
+ * stesse misure (scuro su chiaro / chiaro su scuro).
+ */
+import { site } from '../data/site';
+import { nav } from '../data/nav';
+interface Props { transparent?: boolean }
+const { transparent = false } = Astro.props;
+const path = Astro.url.pathname;
+// Voci del menù radiale: si aprono a semicerchio sotto il logo.
+const items = [{ href: '/', label: 'home' }, ...nav];
+const A0 = 20, A1 = 160;
+const angle = (i: number) => A0 + (items.length > 1 ? ((A1 - A0) * i) / (items.length - 1) : 0);
+---
+<header class:list={['site-header', transparent ? 'is-transparent' : 'is-solid']} data-transparent={String(transparent)}>
+  <div class="container">
+    <button type="button" class="brand" aria-label="Open menu — tìlde studio" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="brand-mark"><strong>tìlde</strong> studio</span>
+    </button>
+  </div>
+</header>
+<div id="mobile-menu" class:list={['radial-menu', transparent && 'from-center']}>
+  <nav class="radial-nav" aria-label="Menu">
+    {items.map((v, i) => (
+      <a href={v.href} style={`--a:${angle(i)}deg`} aria-current={path === v.href ? 'page' : undefined}>{v.label}</a>
+    ))}
+  </nav>
+</div>

@@ -1,0 +1,47 @@
+---
+/**
+ * Home: slideshow a tutto schermo (dissolvenza automatica + pallini), header trasparente.
+ * Stessa struttura del sorgente. L'H1 è nascosto visivamente ma presente per il SEO.
+ */
+import Layout from '../layouts/Layout.astro';
+import Picture from '../components/Picture.astro';
+import { home } from '../data/home';
+---
+<Layout title={home.title} description={home.description} transparent={true}>
+  <h1 class="sr-only">{home.h1}</h1>
+  <section class="hero" aria-label="Studio works">
+    <div class="hero-slides">
+      {home.slides.map((img, i) => (
+        <div class:list={['hero-slide', i === 0 && 'is-active']} data-slide={i}>
+          <Picture img={img} sizes="100vw" eager={i === 0} />
+        </div>
+      ))}
+    </div>
+    <div class="hero-dots" aria-label="Choose slide">
+      {home.slides.map((_, i) => (
+        <button type="button" data-dot={i} aria-current={i === 0 ? 'true' : 'false'} aria-label={`Slide ${i + 1}`}></button>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Slideshow hero: dissolvenza automatica ogni 6s + pallini cliccabili.
+  const slides = [...document.querySelectorAll<HTMLElement>('.hero-slide')];
+  const dots = [...document.querySelectorAll<HTMLButtonElement>('.hero-dots button')];
+  if (slides.length > 1) {
+    let i = 0;
+    let timer: number | undefined;
+    const go = (n: number) => {
+      slides[i].classList.remove('is-active');
+      dots[i]?.setAttribute('aria-current', 'false');
+      i = (n + slides.length) % slides.length;
+      slides[i].classList.add('is-active');
+      dots[i]?.setAttribute('aria-current', 'true');
+    };
+    const start = () => { timer = window.setInterval(() => go(i + 1), 6000); };
+    const stop = () => window.clearInterval(timer);
+    dots.forEach((d, n) => d.addEventListener('click', () => { stop(); go(n); start(); }));
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+  }
+</script>

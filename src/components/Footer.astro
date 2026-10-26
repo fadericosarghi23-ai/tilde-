@@ -1,0 +1,39 @@
+---
+/**
+ * Footer minimale stile sorgente (chiaro, 2 colonne + barra ©). I contatti veri dello studio
+ * vivono qui (il sorgente non ha pagina form). Microdati PostalAddress + NAP per il SEO locale.
+ */
+import { site } from '../data/site';
+import Icon from './Icon.astro';
+const prov = site.indirizzo.provincia;
+---
+<footer class="site-footer">
+  <div class="container top">
+    <div class="col-left" itemscope itemtype="https://schema.org/PostalAddress">
+      <address>
+        <span class="name">{site.nome}</span>
+        <span itemprop="streetAddress">{site.indirizzo.via}</span>
+        <span><span itemprop="postalCode">{site.indirizzo.cap}</span> <span itemprop="addressLocality">{site.indirizzo.citta}</span>{prov && <>, <span itemprop="addressRegion">{prov}</span></>}</span>
+      </address>
+      <div class="links">
+        <a href="/privacy-policy/">Privacy policy</a>
+        <a href="/cookie-policy/">Cookie policy</a>
+        <a href="/sitemap/">Sitemap</a>
+      </div>
+    </div>
+
+    <div class="col-right">
+      <p class="name">{site.footerClaim}</p>
+      <div class="links">
+        {site.social.map((s) => <a href={s.url} target="_blank" rel="noopener me"><Icon name={s.icona} /> {s.nome}</a>)}
+        {site.email && <a href={`mailto:${site.email}`}>{site.email}</a>}
+        {site.telefono && <a href={`tel:${site.telefonoE164}`}>{site.telefono}</a>}
+        {site.mapsUrl && <a href={site.mapsUrl} target="_blank" rel="noopener">Directions</a>}
+      </div>
+    </div>
+  </div>
+
+  <div class="container bottom">
+    <p>© {site.anno} {site.nome}. All Rights Reserved.</p>
+  </div>
+</footer>

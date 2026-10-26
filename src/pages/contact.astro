@@ -1,0 +1,167 @@
+---
+/**
+ * Contact: an improved version of the source contact page. Styled, accessible contact form wired for
+ * Netlify Forms (submissions land in the site owner's Netlify dashboard — no third-party endpoint),
+ * plus email, Instagram and the two offices (Modena + Seville) with "Open in Google Maps" links.
+ * No embedded Google Maps iframes on purpose: they would load third-party trackers and break the
+ * no-consent-banner cookie policy — we link out to the maps instead.
+ */
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+const title = 'Contact | tìlde studio — Modena';
+const description = 'Get in touch with tìlde studio: contact form, email info@tildestudio.eu, and offices in Modena (Italy) and Seville (Spain).';
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Contact', href: '/contact/' }];
+
+const sevilleMaps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('av. Concejal Alberto Jiménez Becerril 26, 41009 Sevilla');
+---
+<Layout title={title} description={description} pageType="ContactPage" crumbs={crumbs}>
+  <div class="container contact-wrap">
+    <h1 class="sr-only">Contact</h1>
+    <div class="contact-grid">
+      <div class="contact-main">
+        <p class="contact-intro">We’d love to hear about your future projects or any questions you may have — feel free to reach us through this form.</p>
+
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hp" hidden><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="first_name">First name</label>
+              <input id="first_name" name="first_name" type="text" autocomplete="given-name" />
+            </div>
+            <div class="field">
+              <label for="last_name">Last name</label>
+              <input id="last_name" name="last_name" type="text" autocomplete="family-name" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" required autocomplete="email" />
+          </div>
+
+          <div class="field">
+            <label for="topic">Inquiry</label>
+            <select id="topic" name="topic">
+              <option>Renovation</option>
+              <option>Consultancy</option>
+              <option>New construction</option>
+              <option>Interior</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="subject">Subject <span class="req" aria-hidden="true">*</span></label>
+            <input id="subject" name="subject" type="text" required />
+          </div>
+
+          <div class="field">
+            <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+
+          <button type="submit" class="contact-submit">Send message</button>
+          <p class="form-note">By sending this message you accept our <a href="/privacy-policy/">privacy policy</a>.</p>
+        </form>
+
+        <p class="form-feedback form-success" role="status" hidden>Thanks — your message has been sent. We’ll get back to you soon.</p>
+        <p class="form-feedback form-error" role="alert" hidden>Something went wrong. Please email us at <a href="mailto:info@tildestudio.eu">info@tildestudio.eu</a>.</p>
+      </div>
+
+      <aside class="contact-aside">
+        <div class="contact-block">
+          <p class="contact-k">Email</p>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+        {site.social.length > 0 && (
+          <div class="contact-block">
+            <p class="contact-k">Instagram</p>
+            <a href={site.social[0].url} target="_blank" rel="noopener me">@tildestudio.eu</a>
+          </div>
+        )}
+        <div class="contact-block">
+          <p class="contact-k">Offices</p>
+          <address class="office">
+            <span class="office-city">Modena, Italy</span>
+            <span>{site.indirizzo.via}, {site.indirizzo.cap} {site.indirizzo.citta} ({site.indirizzo.provincia})</span>
+            <a href={site.mapsUrl} target="_blank" rel="noopener">Open in Google Maps ↗</a>
+          </address>
+          <address class="office">
+            <span class="office-city">Seville, Spain</span>
+            <span>av. Concejal Alberto Jiménez Becerril 26, 41009 Seville</span>
+            <a href={sevilleMaps} target="_blank" rel="noopener">Open in Google Maps ↗</a>
+          </address>
+        </div>
+      </aside>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  .contact-wrap { padding-top: calc(var(--header-h) + 2.5rem); padding-bottom: 4rem; }
+  .contact-grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 820px) { .contact-grid { grid-template-columns: 1.4fr 1fr; gap: 4rem; } }
+  .contact-intro { font-size: 1.05rem; line-height: 1.6; max-width: 36rem; margin: 0 0 2rem; }
+
+  .contact-form .field { margin-bottom: 1.1rem; }
+  .field-row { display: grid; gap: 1.1rem; }
+  @media (min-width: 520px) { .field-row { grid-template-columns: 1fr 1fr; } }
+  .contact-form label { display: block; font-size: .8rem; letter-spacing: .02em; color: #555; margin-bottom: .35rem; }
+  .contact-form .req { color: #0a0a0a; }
+  .contact-form input, .contact-form select, .contact-form textarea {
+    width: 100%; font: inherit; font-size: .95rem; color: var(--ink, #0a0a0a);
+    background: transparent; border: 1px solid rgba(10,10,10,.22); border-radius: 2px;
+    padding: .65rem .75rem; transition: border-color .2s;
+  }
+  .contact-form textarea { resize: vertical; min-height: 7rem; }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+    outline: none; border-color: var(--ink, #0a0a0a);
+  }
+  .contact-form .hp { position: absolute; left: -9999px; }
+  .contact-submit {
+    margin-top: .4rem; background: var(--ink, #0a0a0a); color: #fff; border: 1px solid var(--ink, #0a0a0a);
+    padding: .7rem 1.6rem; border-radius: 999px; font: inherit; font-size: .9rem; cursor: pointer;
+    transition: opacity .2s;
+  }
+  .contact-submit:hover { opacity: .85; }
+  .form-note { margin: 1rem 0 0; font-size: .8rem; color: #8a8a8a; }
+  .form-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .form-feedback { margin-top: 1.25rem; font-size: .95rem; }
+  .form-success { color: #0a0a0a; font-weight: 600; }
+  .form-error { color: #b00020; }
+
+  .contact-aside { display: grid; gap: 1.75rem; align-content: start; }
+  .contact-block .contact-k { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: #8a8a8a; margin: 0 0 .35rem; }
+  .contact-block a { color: var(--ink, #0a0a0a); text-decoration: none; }
+  .contact-block > a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .office { font-style: normal; display: grid; gap: .15rem; margin-bottom: 1.1rem; font-size: .92rem; line-height: 1.45; }
+  .office:last-child { margin-bottom: 0; }
+  .office-city { font-weight: 600; }
+  .office a { font-size: .85rem; color: #555; }
+  .office a:hover { text-decoration: underline; text-underline-offset: 3px; }
+</style>
+
+<script>
+  // Progressive enhancement: AJAX submit to Netlify Forms, with inline success/error.
+  // On Netlify the POST to "/" is captured by the Forms backend; locally it just confirms the UX.
+  const form = document.querySelector<HTMLFormElement>('.contact-form');
+  const ok = document.querySelector<HTMLElement>('.form-success');
+  const err = document.querySelector<HTMLElement>('.form-error');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector<HTMLButtonElement>('.contact-submit');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    try {
+      const data = new URLSearchParams(new FormData(form) as any).toString();
+      const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: data });
+      if (!res.ok) throw new Error(String(res.status));
+      form.hidden = true;
+      if (ok) ok.hidden = false;
+    } catch {
+      if (btn) { btn.disabled = false; btn.textContent = 'Send message'; }
+      if (err) err.hidden = false;
+    }
+  });
+</script>

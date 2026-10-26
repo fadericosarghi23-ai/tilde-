@@ -1,0 +1,198 @@
+---
+/**
+ * Projects (works): COMPACT index of all projects, like the source "projects" page (little scroll),
+ * with combinable filters by category and year. Multi-column on desktop. Projects with photos are
+ * clickable and open the detail page with gallery; the others are just listed.
+ * Category and years are derived from `tipo`/`anno` (no extra data to maintain).
+ */
+import Layout from '../../layouts/Layout.astro';
+import { progetti, type Progetto } from '../../data/progetti';
+
+const title = 'Projects | tìlde studio — architecture in Modena and Seville';
+const description = 'All tìlde studio projects: houses, public spaces, temporary pavilions, retail, competitions and installations across Italy and Spain.';
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Projects', href: '/projects/' }];
+
+const meta = (p: Progetto) => [p.tipo, p.luogo, p.anno, p.nota].filter(Boolean).join(' · ');
+
+function categoriaOf(p: Progetto): string {
+  const t = p.tipo.toLowerCase();
+  if (t.includes('private house') || t.includes('housing')) return 'Residential';
+  if (t.includes('pavilion')) return 'Pavilions';
+  if (t.includes('optics') || t.includes('retail')) return 'Retail';
+  if (t.includes('exhibition')) return 'Exhibitions';
+  if (t.includes('public space') || t.includes('façade') || t.includes('facade')) return 'Public spaces';
+  return 'Public buildings';
+}
+const CURRENT = 2026;
+function yearsOf(p: Progetto): number[] {
+  const nums = (p.anno.match(/\d{4}/g) || []).map(Number);
+  if (nums.length >= 2) { const ys: number[] = []; for (let y = nums[0]; y <= nums[nums.length - 1]; y++) ys.push(y); return ys; }
+  if (nums.length === 1) {
+    if (/ongoing/i.test(p.anno)) { const ys: number[] = []; for (let y = nums[0]; y <= CURRENT; y++) ys.push(y); return ys; }
+    return [nums[0]];
+  }
+  return [];
+}
+
+const ordineCat = ['Public spaces', 'Residential', 'Pavilions', 'Public buildings', 'Retail', 'Exhibitions'];
+const catPresenti = new Set(progetti.map(categoriaOf));
+const categorie = ordineCat.filter((c) => catPresenti.has(c));
+const anni = [...new Set(progetti.flatMap(yearsOf))].sort((a, b) => b - a);
+---
+<Layout title={title} description={description} pageType="CollectionPage" crumbs={crumbs}>
+  <div class="container projects-wrap">
+    <div class="projects-layout reveal">
+      <aside class="projects-side">
+        <h1 class="works-h1">Projects</h1>
+        <div class="works-filter" data-group="cat" role="group" aria-label="Filter by category">
+          <span class="filter-label">Category</span>
+          <div class="chips">
+            <button type="button" class="chip is-active" data-filter="all" aria-pressed="true">All</button>
+            {categorie.map((c) => (
+              <button type="button" class="chip" data-filter={c} aria-pressed="false">{c}</button>
+            ))}
+          </div>
+        </div>
+        <div class="works-filter" data-group="year" role="group" aria-label="Filter by year">
+          <span class="filter-label">Year</span>
+          <div class="chips">
+            <button type="button" class="chip is-active" data-filter="all" aria-pressed="true">All</button>
+            {anni.map((y) => (
+              <button type="button" class="chip" data-filter={String(y)} aria-pressed="false">{y}</button>
+            ))}
+          </div>
+        </div>
+
+        <div class="proj-preview" aria-hidden="true">
+          <img alt="" decoding="async">
+          <span class="pp-name"></span>
+        </div>
+      </aside>
+
+      <div class="works-main">
+        <ul class="works-index" id="works-index">
+          {progetti.map((p) => (
+            <li class="wi-item" data-cat={categoriaOf(p)} data-years={yearsOf(p).join(' ')} data-img={p.thumb?.src} data-title={p.titolo}>
+              {p.slug ? (
+                <a class="wi wi-link" href={`/projects/${p.slug}/`}>
+                  <span class="wi-title">{p.titolo}</span>
+                  <span class="wi-meta">{meta(p)}</span>
+                </a>
+              ) : (
+                <div class="wi">
+                  <span class="wi-title">{p.titolo}</span>
+                  <span class="wi-meta">{meta(p)}</span>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+        <p class="works-empty" hidden>No projects match these filters.</p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  .projects-wrap { padding-top: calc(var(--header-h) + .4rem); }
+  .projects-layout { display: grid; gap: 1.5rem; }
+  @media (min-width: 900px) { .projects-layout { grid-template-columns: 300px 1fr; gap: 3rem; align-items: start; } .projects-side { position: sticky; top: calc(var(--header-h) + .75rem); } }
+  .works-h1 { font-size: 1.4rem; font-weight: 700; margin: 0 0 1.4rem; }
+  .works-filter { margin-bottom: 1.3rem; }
+  .works-filter .filter-label { display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: #8a8a8a; margin-bottom: .55rem; }
+  .works-filter .chips { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .works-filter .chip {
+    border: 1px solid rgba(10,10,10,.2); background: transparent; color: var(--ink, #0a0a0a);
+    padding: .22rem .65rem; border-radius: 999px; font-size: .78rem; cursor: pointer;
+    transition: background-color .2s, color .2s, border-color .2s;
+  }
+  .works-filter .chip:hover { border-color: var(--ink, #0a0a0a); }
+  .works-filter .chip.is-active { background: var(--ink, #0a0a0a); color: #fff; border-color: var(--ink, #0a0a0a); }
+  /* Elenco a destra, compatto: tutti i progetti in una schermata */
+  .works-index { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; column-gap: 2.5rem; }
+  @media (min-width: 640px) { .works-index { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .works-index { grid-template-columns: 1fr 1fr 1fr; } }
+  .wi-item { border-top: 1px solid rgba(10,10,10,.12); }
+  .wi-item.is-hidden { display: none; }
+  .wi { display: block; padding: .22rem 0; color: inherit; text-decoration: none; position: relative; }
+  .wi-title { display: block; font-weight: 600; letter-spacing: .01em; font-size: .92rem; }
+  .wi-meta { display: block; margin-top: .05rem; font-size: .74rem; color: #6b6b6b; line-height: 1.25; }
+  a.wi-link:hover .wi-title, a.wi-link:focus-visible .wi-title { text-decoration: underline; text-underline-offset: 3px; }
+  a.wi-link::after { content: "→"; position: absolute; top: .7rem; right: 0; opacity: 0; transition: opacity .2s, transform .2s; }
+  a.wi-link:hover::after, a.wi-link:focus-visible::after { opacity: .5; transform: translateX(2px); }
+  .works-empty { color: #6b6b6b; margin: 1rem 0 4rem; }
+
+  /* Hover: isola il progetto — gli altri sfumano, la foto appare a sinistra (sotto i filtri). */
+  .works-index .wi-item { transition: opacity .25s ease; }
+  .works-index:hover .wi-item { opacity: .14; }
+  .works-index .wi-item:hover { opacity: 1; }
+  .proj-preview { margin-top: 1.75rem; opacity: 0; transition: opacity .3s ease; }
+  .proj-preview.is-on { opacity: 1; }
+  .proj-preview img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: #ececec; }
+  .pp-name { display: block; margin-top: .6rem; font-size: .95rem; font-weight: 600; letter-spacing: .01em; color: var(--ink, #0a0a0a); }
+  @media (max-width: 899px) { .proj-preview { display: none; } }
+  @media (hover: none) { .proj-preview { display: none; } }
+</style>
+
+<script>
+  // Combinable project filters (category + year), client-side and progressive.
+  const groups = Array.from(document.querySelectorAll('.works-filter'));
+  const items = Array.from(document.querySelectorAll('#works-index .wi-item'));
+  const empty = document.querySelector('.works-empty');
+  const state = {};
+  groups.forEach((g) => { state[g.dataset.group] = 'all'; });
+
+  function apply() {
+    let shown = 0;
+    items.forEach((li) => {
+      let match = true;
+      for (const g of groups) {
+        const key = g.dataset.group;
+        const val = state[key];
+        if (val === 'all') continue;
+        if (key === 'year') {
+          const ys = (li.dataset.years || '').split(' ');
+          if (!ys.includes(val)) match = false;
+        } else if (li.dataset[key] !== val) {
+          match = false;
+        }
+      }
+      li.classList.toggle('is-hidden', !match);
+      if (match) shown++;
+    });
+    if (empty) empty.hidden = shown !== 0;
+  }
+
+  groups.forEach((g) => {
+    g.querySelectorAll('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        state[g.dataset.group] = chip.dataset.filter;
+        g.querySelectorAll('.chip').forEach((c) => {
+          const on = c === chip;
+          c.classList.toggle('is-active', on);
+          c.setAttribute('aria-pressed', String(on));
+        });
+        apply();
+      });
+    });
+  });
+</script>
+
+<script>
+  // Hover su un progetto con foto: isola quel progetto (gli altri sfumano) e mostra foto + nome al centro.
+  const preview = document.querySelector('.proj-preview');
+  const pimg = preview?.querySelector('img');
+  const pname = preview?.querySelector('.pp-name');
+  if (preview && pimg && pname) {
+    document.querySelectorAll('#works-index .wi-item[data-img]').forEach((li) => {
+      const src = li.getAttribute('data-img');
+      const name = li.getAttribute('data-title') || '';
+      li.addEventListener('mouseenter', () => {
+        if (pimg.getAttribute('src') !== src) pimg.setAttribute('src', src);
+        pname.textContent = name;
+        preview.classList.add('is-on');
+      });
+      li.addEventListener('mouseleave', () => preview.classList.remove('is-on'));
+    });
+  }
+</script>
