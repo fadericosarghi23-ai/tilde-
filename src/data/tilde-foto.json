@@ -1,0 +1,1765 @@
+{
+ "fet-daigua": [
+  {
+   "src": "/img/progetti/fet-daigua/fet-daigua-01-1200.jpg",
+   "width": 2400,
+   "height": 1696,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/fet-daigua/fet-daigua-02-1200.jpg",
+   "width": 2400,
+   "height": 1391,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/fet-daigua/fet-daigua-03-1200.jpg",
+   "width": 2048,
+   "height": 1365,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2048
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/fet-daigua/fet-daigua-04-1200.jpg",
+   "width": 2400,
+   "height": 2189,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/fet-daigua/fet-daigua-05-1200.jpg",
+   "width": 2400,
+   "height": 2250,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/fet-daigua/fet-daigua-06-1200.jpg",
+   "width": 2400,
+   "height": 732,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/fet-daigua/fet-daigua-07-899.jpg",
+   "width": 899,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    899
+   ],
+   "drawing": true
+  }
+ ],
+ "escola-salvador-vilarrassa": [
+  {
+   "src": "/img/progetti/escola-salvador-vilarrassa/escola-salvador-vilarrassa-01-800.jpg",
+   "width": 800,
+   "height": 961,
+   "widths": [
+    480,
+    800
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/escola-salvador-vilarrassa/escola-salvador-vilarrassa-02-1200.jpg",
+   "width": 2400,
+   "height": 2194,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/escola-salvador-vilarrassa/escola-salvador-vilarrassa-03-1200.jpg",
+   "width": 2400,
+   "height": 655,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/escola-salvador-vilarrassa/escola-salvador-vilarrassa-04-1200.jpg",
+   "width": 2400,
+   "height": 519,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/escola-salvador-vilarrassa/escola-salvador-vilarrassa-05-1200.jpg",
+   "width": 2400,
+   "height": 500,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/escola-salvador-vilarrassa/escola-salvador-vilarrassa-06-1200.jpg",
+   "width": 2400,
+   "height": 304,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/escola-salvador-vilarrassa/escola-salvador-vilarrassa-07-1200.jpg",
+   "width": 2400,
+   "height": 442,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/escola-salvador-vilarrassa/escola-salvador-vilarrassa-08-1200.jpg",
+   "width": 2400,
+   "height": 2229,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  }
+ ],
+ "contrapunto": [
+  {
+   "src": "/img/progetti/contrapunto/contrapunto-01-1200.jpg",
+   "width": 2400,
+   "height": 2377,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  }
+ ],
+ "paisaje-deshecho": [
+  {
+   "src": "/img/progetti/paisaje-deshecho/paisaje-deshecho-01-1200.jpg",
+   "width": 2208,
+   "height": 1767,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2208
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/paisaje-deshecho/paisaje-deshecho-02-1200.jpg",
+   "width": 2208,
+   "height": 1767,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2208
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/paisaje-deshecho/paisaje-deshecho-03-1200.jpg",
+   "width": 1918,
+   "height": 2132,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1918
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/paisaje-deshecho/paisaje-deshecho-04-1200.jpg",
+   "width": 2400,
+   "height": 1919,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/paisaje-deshecho/paisaje-deshecho-05-1200.jpg",
+   "width": 2400,
+   "height": 2031,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  }
+ ],
+ "casa-ad": [
+  {
+   "src": "/img/progetti/casa-ad/casa-ad-01-1200.jpg",
+   "width": 2400,
+   "height": 1800,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  }
+ ],
+ "blu-azul": [
+  {
+   "src": "/img/progetti/blu-azul/blu-azul-01-1200.jpg",
+   "width": 2384,
+   "height": 1598,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2384
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/blu-azul/blu-azul-02-1200.jpg",
+   "width": 1386,
+   "height": 2079,
+   "widths": [
+    480,
+    800,
+    1200,
+    1386
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/blu-azul/blu-azul-03-1200.jpg",
+   "width": 1597,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1597
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/blu-azul/blu-azul-04-1200.jpg",
+   "width": 1609,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1609
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/blu-azul/blu-azul-05-1200.jpg",
+   "width": 1704,
+   "height": 2130,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1704
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/blu-azul/blu-azul-06-1200.jpg",
+   "width": 1920,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1920
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/blu-azul/blu-azul-07-904.jpg",
+   "width": 904,
+   "height": 1350,
+   "widths": [
+    480,
+    800,
+    904
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/blu-azul/blu-azul-08-1200.jpg",
+   "width": 2126,
+   "height": 2126,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2126
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/blu-azul/blu-azul-09-1200.jpg",
+   "width": 2340,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2340
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/blu-azul/blu-azul-10-1200.jpg",
+   "width": 2126,
+   "height": 2126,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2126
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/blu-azul/blu-azul-11-1200.jpg",
+   "width": 1878,
+   "height": 1148,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1878
+   ],
+   "drawing": true
+  }
+ ],
+ "piazzetta-de-giorgi": [
+  {
+   "src": "/img/progetti/piazzetta-de-giorgi/piazzetta-de-giorgi-01-1200.jpg",
+   "width": 2400,
+   "height": 1697,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/piazzetta-de-giorgi/piazzetta-de-giorgi-02-1200.jpg",
+   "width": 2400,
+   "height": 1697,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/piazzetta-de-giorgi/piazzetta-de-giorgi-03-1200.jpg",
+   "width": 1697,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1697
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazzetta-de-giorgi/piazzetta-de-giorgi-04-1200.jpg",
+   "width": 2400,
+   "height": 1697,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/piazzetta-de-giorgi/piazzetta-de-giorgi-05-1200.jpg",
+   "width": 1620,
+   "height": 1729,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1620
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazzetta-de-giorgi/piazzetta-de-giorgi-06-1200.jpg",
+   "width": 2400,
+   "height": 1697,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/piazzetta-de-giorgi/piazzetta-de-giorgi-07-1200.jpg",
+   "width": 2400,
+   "height": 1017,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazzetta-de-giorgi/piazzetta-de-giorgi-08-1200.jpg",
+   "width": 2400,
+   "height": 1669,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazzetta-de-giorgi/piazzetta-de-giorgi-09-1200.jpg",
+   "width": 2400,
+   "height": 1296,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  }
+ ],
+ "agricultural-hub": [
+  {
+   "src": "/img/progetti/agricultural-hub/agricultural-hub-01-1200.jpg",
+   "width": 2400,
+   "height": 1533,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/agricultural-hub/agricultural-hub-02-1200.jpg",
+   "width": 2007,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2007
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/agricultural-hub/agricultural-hub-03-1200.jpg",
+   "width": 2292,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2292
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/agricultural-hub/agricultural-hub-04-1200.jpg",
+   "width": 2358,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2358
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/agricultural-hub/agricultural-hub-05-1200.jpg",
+   "width": 2365,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2365
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/agricultural-hub/agricultural-hub-06-1200.jpg",
+   "width": 2400,
+   "height": 370,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/agricultural-hub/agricultural-hub-07-1200.jpg",
+   "width": 2400,
+   "height": 382,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  }
+ ],
+ "av-tibidabo": [
+  {
+   "src": "/img/progetti/av-tibidabo/av-tibidabo-01-1200.jpg",
+   "width": 2400,
+   "height": 1694,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/av-tibidabo/av-tibidabo-02-1200.jpg",
+   "width": 2400,
+   "height": 1694,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/av-tibidabo/av-tibidabo-03-1200.jpg",
+   "width": 2400,
+   "height": 1267,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/av-tibidabo/av-tibidabo-04-1200.jpg",
+   "width": 2400,
+   "height": 1267,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/av-tibidabo/av-tibidabo-05-1200.jpg",
+   "width": 2400,
+   "height": 1716,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/av-tibidabo/av-tibidabo-06-1200.jpg",
+   "width": 2400,
+   "height": 1111,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  }
+ ],
+ "studiolo": [
+  {
+   "src": "/img/progetti/studiolo/studiolo-01-1200.jpg",
+   "width": 2048,
+   "height": 1440,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2048
+   ],
+   "drawing": true
+  }
+ ],
+ "santagata-ex-convent": [
+  {
+   "src": "/img/progetti/santagata-ex-convent/santagata-ex-convent-01-1200.jpg",
+   "width": 2400,
+   "height": 1754,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/santagata-ex-convent/santagata-ex-convent-02-1200.jpg",
+   "width": 1705,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1705
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/santagata-ex-convent/santagata-ex-convent-03-1200.jpg",
+   "width": 2226,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2226
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/santagata-ex-convent/santagata-ex-convent-04-1200.jpg",
+   "width": 2400,
+   "height": 480,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/santagata-ex-convent/santagata-ex-convent-05-1200.jpg",
+   "width": 2400,
+   "height": 1694,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/santagata-ex-convent/santagata-ex-convent-06-1200.jpg",
+   "width": 2400,
+   "height": 564,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/santagata-ex-convent/santagata-ex-convent-07-1200.jpg",
+   "width": 2400,
+   "height": 1694,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/santagata-ex-convent/santagata-ex-convent-08-1200.jpg",
+   "width": 2400,
+   "height": 567,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  }
+ ],
+ "fragmentos": [
+  {
+   "src": "/img/progetti/fragmentos/fragmentos-01-1200.jpg",
+   "width": 2321,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2321
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/fragmentos/fragmentos-02-1200.jpg",
+   "width": 1436,
+   "height": 1080,
+   "widths": [
+    480,
+    800,
+    1200,
+    1436
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/fragmentos/fragmentos-03-1200.jpg",
+   "width": 1436,
+   "height": 1080,
+   "widths": [
+    480,
+    800,
+    1200,
+    1436
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/fragmentos/fragmentos-04-1200.jpg",
+   "width": 1436,
+   "height": 1080,
+   "widths": [
+    480,
+    800,
+    1200,
+    1436
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/fragmentos/fragmentos-05-790.jpg",
+   "width": 790,
+   "height": 1080,
+   "widths": [
+    480,
+    790
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/fragmentos/fragmentos-06-1200.jpg",
+   "width": 1628,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1628
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/fragmentos/fragmentos-07-1200.jpg",
+   "width": 1609,
+   "height": 1645,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1609
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/fragmentos/fragmentos-08-1200.jpg",
+   "width": 1958,
+   "height": 1137,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1958
+   ],
+   "drawing": true
+  }
+ ],
+ "boulevard-della-pietra": [
+  {
+   "src": "/img/progetti/boulevard-della-pietra/boulevard-della-pietra-01-1200.jpg",
+   "width": 2400,
+   "height": 1625,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/boulevard-della-pietra/boulevard-della-pietra-02-1066.jpg",
+   "width": 1066,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1066
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/boulevard-della-pietra/boulevard-della-pietra-03-1200.jpg",
+   "width": 2400,
+   "height": 1696,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/boulevard-della-pietra/boulevard-della-pietra-04-1200.jpg",
+   "width": 2400,
+   "height": 1696,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  }
+ ],
+ "fluttuo": [
+  {
+   "src": "/img/progetti/fluttuo/fluttuo-01-1200.jpg",
+   "width": 2400,
+   "height": 2135,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/fluttuo/fluttuo-02-1200.jpg",
+   "width": 2400,
+   "height": 651,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/fluttuo/fluttuo-03-1200.jpg",
+   "width": 1697,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1697
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/fluttuo/fluttuo-04-1200.jpg",
+   "width": 1882,
+   "height": 1798,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1882
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/fluttuo/fluttuo-05-1200.jpg",
+   "width": 2400,
+   "height": 2292,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  }
+ ],
+ "casa-e": [
+  {
+   "src": "/img/progetti/casa-e/casa-e-01-1200.jpg",
+   "width": 2400,
+   "height": 1715,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/casa-e/casa-e-02-1200.jpg",
+   "width": 1800,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1800
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/casa-e/casa-e-03-1200.jpg",
+   "width": 1800,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1800
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/casa-e/casa-e-04-1200.jpg",
+   "width": 1800,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1800
+   ],
+   "drawing": true
+  }
+ ],
+ "a-escena": [
+  {
+   "src": "/img/progetti/a-escena/a-escena-01-1200.jpg",
+   "width": 2400,
+   "height": 1600,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/a-escena/a-escena-02-1200.jpg",
+   "width": 2400,
+   "height": 1903,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/a-escena/a-escena-03-1200.jpg",
+   "width": 2075,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2075
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/a-escena/a-escena-04-1200.jpg",
+   "width": 2077,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2077
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/a-escena/a-escena-05-1200.jpg",
+   "width": 2077,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2077
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/a-escena/a-escena-06-1200.jpg",
+   "width": 2400,
+   "height": 2375,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  }
+ ],
+ "piazza-martiri": [
+  {
+   "src": "/img/progetti/piazza-martiri/piazza-martiri-01-1200.jpg",
+   "width": 2048,
+   "height": 1120,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2048
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazza-martiri/piazza-martiri-02-1200.jpg",
+   "width": 1478,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1478
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazza-martiri/piazza-martiri-03-1200.jpg",
+   "width": 2400,
+   "height": 600,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazza-martiri/piazza-martiri-04-1200.jpg",
+   "width": 2048,
+   "height": 1120,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2048
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazza-martiri/piazza-martiri-05-1200.jpg",
+   "width": 1772,
+   "height": 1772,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1772
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazza-martiri/piazza-martiri-06-1200.jpg",
+   "width": 1772,
+   "height": 1772,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1772
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazza-martiri/piazza-martiri-07-1200.jpg",
+   "width": 1772,
+   "height": 1772,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1772
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazza-martiri/piazza-martiri-08-1200.jpg",
+   "width": 1772,
+   "height": 1772,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1772
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/piazza-martiri/piazza-martiri-09-1200.jpg",
+   "width": 1772,
+   "height": 1772,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1772
+   ],
+   "drawing": true
+  }
+ ],
+ "biscione": [
+  {
+   "src": "/img/progetti/biscione/biscione-01-1200.jpg",
+   "width": 1664,
+   "height": 2048,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1664
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/biscione/biscione-02-1200.jpg",
+   "width": 1664,
+   "height": 2048,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1664
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/biscione/biscione-03-1200.jpg",
+   "width": 1664,
+   "height": 2048,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1664
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/biscione/biscione-04-1200.jpg",
+   "width": 2400,
+   "height": 1697,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  }
+ ],
+ "casa-c": [
+  {
+   "src": "/img/progetti/casa-c/casa-c-01-1200.jpg",
+   "width": 1600,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/casa-c/casa-c-02-1200.jpg",
+   "width": 1800,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1800
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/casa-c/casa-c-03-1200.jpg",
+   "width": 1800,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1800
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/casa-c/casa-c-04-1200.jpg",
+   "width": 1600,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/casa-c/casa-c-05-1200.jpg",
+   "width": 1800,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1800
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/casa-c/casa-c-06-1200.jpg",
+   "width": 2400,
+   "height": 1600,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  }
+ ],
+ "cuniola-gardens": [
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-01-1200.jpg",
+   "width": 2116,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2116
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-02-1182.jpg",
+   "width": 1182,
+   "height": 1182,
+   "widths": [
+    480,
+    800,
+    1182
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-03-1182.jpg",
+   "width": 1182,
+   "height": 1182,
+   "widths": [
+    480,
+    800,
+    1182
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-04-1200.jpg",
+   "width": 2205,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2205
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-05-1182.jpg",
+   "width": 1182,
+   "height": 1182,
+   "widths": [
+    480,
+    800,
+    1182
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-06-1182.jpg",
+   "width": 1182,
+   "height": 1182,
+   "widths": [
+    480,
+    800,
+    1182
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-07-1200.jpg",
+   "width": 2116,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2116
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-08-1182.jpg",
+   "width": 1182,
+   "height": 1182,
+   "widths": [
+    480,
+    800,
+    1182
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-09-1200.jpg",
+   "width": 2400,
+   "height": 2321,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-10-1182.jpg",
+   "width": 1182,
+   "height": 1182,
+   "widths": [
+    480,
+    800,
+    1182
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-11-1200.jpg",
+   "width": 2162,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2162
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-12-1182.jpg",
+   "width": 1182,
+   "height": 1182,
+   "widths": [
+    480,
+    800,
+    1182
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-13-1200.jpg",
+   "width": 2400,
+   "height": 2316,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/cuniola-gardens/cuniola-gardens-14-1200.jpg",
+   "width": 2400,
+   "height": 669,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  }
+ ],
+ "a-linha-de-sombra": [
+  {
+   "src": "/img/progetti/a-linha-de-sombra/a-linha-de-sombra-01-1200.jpg",
+   "width": 2279,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2279
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/a-linha-de-sombra/a-linha-de-sombra-02-1200.jpg",
+   "width": 1604,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1604
+   ],
+   "drawing": false
+  },
+  {
+   "src": "/img/progetti/a-linha-de-sombra/a-linha-de-sombra-03-1200.jpg",
+   "width": 1798,
+   "height": 1708,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1798
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/a-linha-de-sombra/a-linha-de-sombra-04-1200.jpg",
+   "width": 2400,
+   "height": 1755,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": false
+  }
+ ],
+ "horse-museum": [
+  {
+   "src": "/img/progetti/horse-museum/horse-museum-01-1200.jpg",
+   "width": 1736,
+   "height": 2048,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1736
+   ],
+   "drawing": true
+  }
+ ],
+ "arboleda": [
+  {
+   "src": "/img/progetti/arboleda/arboleda-01-1200.jpg",
+   "width": 2400,
+   "height": 1059,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/arboleda/arboleda-02-1200.jpg",
+   "width": 1661,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1661
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/arboleda/arboleda-03-1200.jpg",
+   "width": 2043,
+   "height": 823,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2043
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/arboleda/arboleda-04-1200.jpg",
+   "width": 2400,
+   "height": 850,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    2400
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/arboleda/arboleda-05-1200.jpg",
+   "width": 1988,
+   "height": 2400,
+   "widths": [
+    480,
+    800,
+    1200,
+    1600,
+    1988
+   ],
+   "drawing": true
+  },
+  {
+   "src": "/img/progetti/arboleda/arboleda-06-332.jpg",
+   "width": 332,
+   "height": 2400,
+   "widths": [
+    332
+   ],
+   "drawing": true
+  }
+ ]
+}

@@ -6,6 +6,7 @@
  * descriptions are editorial copy.
  */
 import { type Img } from '../lib/media';
+import fotoImportate from './tilde-foto.json';
 
 export type Progetto = {
   titolo: string;
@@ -181,6 +182,51 @@ for (const p of progetti) {
   }
 }
 
-/** Only the projects with a detail page (have a slug and photos). */
-export const progettiConDettaglio = progetti.filter((p): p is Progetto & { slug: string } => Boolean(p.slug));
+// Ogni progetto deve essere apribile: a chi non ha uno slug esplicito ne assegniamo uno
+// derivato dal titolo (senza accenti/caratteri speciali), garantendo l'unicità.
+const slugify = (s: string) =>
+  s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+// Slug forzati dove quello automatico non coincide con la cartella immagini importata.
+const slugOverride: Record<string, string> = {
+  'Fet d’Aigua': 'fet-daigua',
+  'Paisaje Des(h)echo': 'paisaje-deshecho',
+  'Av. Tibidabo, 39-41': 'av-tibidabo',
+  'Sant’Agata ex convent': 'santagata-ex-convent',
+};
+const slugUsati = new Set(progetti.filter((p) => p.slug).map((p) => p.slug!));
+for (const p of progetti) {
+  if (!p.slug) {
+    const base = slugOverride[p.titolo] || slugify(p.titolo) || 'progetto';
+    let s = base;
+    let n = 2;
+    while (slugUsati.has(s)) s = `${base}-${n++}`;
+    p.slug = s;
+    slugUsati.add(s);
+  }
+}
+
+// Importa foto e disegni (dal sito tìlde) per i progetti ancora senza galleria.
+// Le immagini responsive stanno in public/img/progetti/<slug>/ (varianti avif/webp/jpg).
+type FotoImp = { src: string; width: number; height: number; widths: number[]; drawing: boolean };
+const buildImg = (f: FotoImp, titolo: string, luogo: string, k: number): Img => ({
+  src: f.src, width: f.width, height: f.height, widths: f.widths, responsive: true,
+  drawing: f.drawing || undefined,
+  alt: `${titolo}, ${luogo} — ${f.drawing ? 'drawing' : 'photo'} ${k + 1}`,
+});
+for (const p of progetti) {
+  if (p.foto && p.foto.length) continue;
+  const lista = (fotoImportate as Record<string, FotoImp[]>)[p.slug!];
+  if (!lista || !lista.length) continue;
+  p.foto = lista.filter((f) => !f.drawing).map((f, k) => buildImg(f, p.titolo, p.luogo, k));
+  p.disegni = lista.filter((f) => f.drawing).map((f, k) => buildImg(f, p.titolo, p.luogo, k));
+  const prima = p.foto[0] ?? p.disegni[0];
+  if (!p.hero) p.hero = prima;
+  if (!p.thumb) p.thumb = prima;
+}
+
+/** Progetti in evidenza nella home (galleria ricca originale). */
+const SLUG_EVIDENZA = new Set(['trama', 'terraplen', 'volume-uno', 'terrace-with-house', 'optica-hemera', 'a-viva-voce', 'selective-upgrade', 'public-housing-archive']);
+export const progettiConDettaglio = progetti.filter((p): p is Progetto & { slug: string } => SLUG_EVIDENZA.has(p.slug!));
+/** Tutti i progetti sono apribili: ognuno ha uno slug e quindi una pagina di dettaglio. */
+export const tuttiIProgetti = progetti.filter((p): p is Progetto & { slug: string } => Boolean(p.slug));
 export const getProgetto = (slug: string) => progetti.find((p) => p.slug === slug);

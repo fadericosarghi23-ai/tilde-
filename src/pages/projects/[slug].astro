@@ -6,16 +6,16 @@
  */
 import Layout from '../../layouts/Layout.astro';
 import Picture from '../../components/Picture.astro';
-import { progettiConDettaglio } from '../../data/progetti';
+import { tuttiIProgetti } from '../../data/progetti';
 import { fullSrc } from '../../lib/media';
 import { site } from '../../data/site';
 
 export function getStaticPaths() {
-  return progettiConDettaglio.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+  return tuttiIProgetti.map((p) => ({ params: { slug: p.slug }, props: { p } }));
 }
 const { p } = Astro.props;
 const title = `${p.titolo} | ${site.nome}`;
-const description = p.descrizione;
+const description = p.descrizione ?? `${p.titolo} — ${p.tipo}, ${p.luogo} (${p.anno}).`;
 const crumbs = [
   { name: 'Home', href: '/' },
   { name: 'Projects', href: '/projects/' },
@@ -23,7 +23,8 @@ const crumbs = [
 ];
 const foto = p.foto ?? [];
 const disegni = p.disegni ?? [];
-const twoCol = disegni.length > 0;
+const twoCol = foto.length > 0 && disegni.length > 0;
+const hasGallery = foto.length > 0 || disegni.length > 0;
 ---
 <Layout title={title} description={description} pageType="ItemPage" ogType="article" crumbs={crumbs}>
   <article class="container project-wrap">
@@ -31,42 +32,52 @@ const twoCol = disegni.length > 0;
       <header class="project-head reveal">
         <h1>{p.titolo}</h1>
         <p class="place-year">{p.luogo} · {p.anno}{p.nota ? ` · ${p.nota}` : ''}</p>
-        <div class="project-meta">
-          <span><b>Client:</b> {p.cliente}</span>
-          <span><b>Use:</b> {p.destinazione}</span>
-          <span><b>Works:</b> {p.intervento}</span>
-          <span><b>Status:</b> {p.stato}</span>
-          <span><b>Team:</b> {p.team}</span>
-        </div>
-        <p class="project-desc">{p.descrizione}</p>
+        {(p.cliente || p.destinazione || p.intervento || p.stato || p.team) ? (
+          <div class="project-meta">
+            {p.cliente && <span><b>Client:</b> {p.cliente}</span>}
+            {p.destinazione && <span><b>Use:</b> {p.destinazione}</span>}
+            {p.intervento && <span><b>Works:</b> {p.intervento}</span>}
+            {p.stato && <span><b>Status:</b> {p.stato}</span>}
+            {p.team && <span><b>Team:</b> {p.team}</span>}
+          </div>
+        ) : (
+          <div class="project-meta"><span><b>Type:</b> {p.tipo}</span></div>
+        )}
+        {p.descrizione && <p class="project-desc">{p.descrizione}</p>}
         <a class="project-back" href="/projects/">← Back to projects</a>
       </header>
 
-      <div class:list={['project-cols', !twoCol && 'single']}>
-        <section class="project-col reveal">
-          <h2 class="pcol-h">Photos</h2>
-          <div class="pcol-imgs">
-            {foto.map((img) => (
-              <figure>
-                <button type="button" data-full={fullSrc(img)} data-alt={img.alt} aria-label="Enlarge image"><Picture img={img} sizes="(min-width:900px) 40vw, 100vw" /></button>
-              </figure>
-            ))}
-          </div>
-        </section>
+      {hasGallery ? (
+        <div class:list={['project-cols', !twoCol && 'single']}>
+          {foto.length > 0 && (
+            <section class="project-col reveal">
+              <h2 class="pcol-h">Photos</h2>
+              <div class="pcol-imgs">
+                {foto.map((img) => (
+                  <figure>
+                    <button type="button" data-full={fullSrc(img)} data-alt={img.alt} aria-label="Enlarge image"><Picture img={img} sizes="(min-width:900px) 40vw, 100vw" /></button>
+                  </figure>
+                ))}
+              </div>
+            </section>
+          )}
 
-        {twoCol && (
-          <section class="project-col reveal">
-            <h2 class="pcol-h">Drawings</h2>
-            <div class="pcol-imgs pcol-drawings">
-              {disegni.map((img) => (
-                <figure>
-                  <button type="button" data-full={fullSrc(img)} data-alt={img.alt} aria-label="Enlarge drawing"><Picture img={img} sizes="(min-width:900px) 40vw, 100vw" /></button>
-                </figure>
-              ))}
-            </div>
-          </section>
-        )}
-      </div>
+          {disegni.length > 0 && (
+            <section class="project-col reveal">
+              <h2 class="pcol-h">Drawings</h2>
+              <div class="pcol-imgs pcol-drawings">
+                {disegni.map((img) => (
+                  <figure>
+                    <button type="button" data-full={fullSrc(img)} data-alt={img.alt} aria-label="Enlarge drawing"><Picture img={img} sizes="(min-width:900px) 40vw, 100vw" /></button>
+                  </figure>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+      ) : (
+        <p class="project-soon reveal">Project sheet in preparation — images coming soon.</p>
+      )}
     </div>
   </article>
 
@@ -87,6 +98,7 @@ const twoCol = disegni.length > 0;
   .project-desc { line-height: 1.65; color: #333; margin: 0 0 1.5rem; font-size: .95rem; }
   .project-back { font-size: .85rem; color: #6b6b6b; text-decoration: none; }
   .project-back:hover { color: var(--ink, #0a0a0a); text-decoration: underline; text-underline-offset: 3px; }
+  .project-soon { color: #6b6b6b; font-size: .95rem; }
 
   .project-cols { display: grid; gap: 2rem; }
   @media (min-width: 900px) {
