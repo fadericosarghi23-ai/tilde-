@@ -1,47 +1,171 @@
 ---
 /**
- * Home: slideshow a tutto schermo (dissolvenza automatica + pallini), header trasparente.
- * Stessa struttura del sorgente. L'H1 è nascosto visivamente ma presente per il SEO.
+ * Home editoriale (stile "studio index"): colonna sinistra con wordmark, testo intro e
+ * navigazione; al centro la grande immagine quadrata del progetto in evidenza; a destra
+ * la striscia verticale di anteprime. Hover/focus su un'anteprima cambia immagine e titolo.
+ * Niente header/footer globali: la pagina gestisce il suo "chrome" (bare=true).
  */
 import Layout from '../layouts/Layout.astro';
 import Picture from '../components/Picture.astro';
 import { home } from '../data/home';
+import { site } from '../data/site';
+import { progettiConDettaglio } from '../data/progetti';
+
+const works = progettiConDettaglio; // gli 8 progetti con foto e pagina di dettaglio
+const intro = site.descrizione;
 ---
-<Layout title={home.title} description={home.description} transparent={true}>
+<Layout title={home.title} description={home.description} bare={true}>
   <h1 class="sr-only">{home.h1}</h1>
-  <section class="hero" aria-label="Studio works">
-    <div class="hero-slides">
-      {home.slides.map((img, i) => (
-        <div class:list={['hero-slide', i === 0 && 'is-active']} data-slide={i}>
-          <Picture img={img} sizes="100vw" eager={i === 0} />
-        </div>
+
+  <div class="ed">
+    <!-- micro-etichette agli angoli -->
+    <span class="glyph g-tr">Modena · Sevilla</span>
+    <a class="glyph g-bl" href={`mailto:${site.email}`}>{site.email}</a>
+    <span class="glyph g-br">© {new Date().getFullYear()}</span>
+
+    <!-- colonna sinistra -->
+    <div class="ed-left">
+      <a class="ed-brand" href="/" aria-label={`${site.nome} — home`}><strong>tìlde</strong> studio</a>
+      <nav class="ed-nav" aria-label="Main">
+        <a class="link-underline" href="/projects/">Projects</a>
+        <a class="link-underline" href="/studio/">Studio</a>
+        <a class="link-underline" href="/contact/">Contact</a>
+      </nav>
+      <div class="ed-active" aria-live="polite">
+        {works.map((p, i) => (
+          <a class:list={['ed-active-item', i === 0 && 'is-active']} data-item={i} href={`/projects/${p.slug}/`}>
+            <span class="ed-active-title">{p.titolo}</span>
+            <span class="ed-active-meta">{p.tipo} — {p.luogo}, {p.anno}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- colonna centrale: descrizione sopra + immagine del progetto -->
+    <div class="ed-center">
+    <p class="ed-intro">{intro}</p>
+    <div class="ed-stage">
+      {works.map((p, i) => (
+        <a
+          class:list={['ed-shot', i === 0 && 'is-active']}
+          data-shot={i}
+          href={`/projects/${p.slug}/`}
+          aria-label={p.titolo}
+          aria-hidden={i !== 0 ? 'true' : undefined}
+          tabindex={i !== 0 ? -1 : undefined}
+        >
+          <Picture img={p.hero!} sizes="(max-width:899px) 92vw, 50vw" eager={i === 0} />
+        </a>
       ))}
     </div>
-    <div class="hero-dots" aria-label="Choose slide">
-      {home.slides.map((_, i) => (
-        <button type="button" data-dot={i} aria-current={i === 0 ? 'true' : 'false'} aria-label={`Slide ${i + 1}`}></button>
-      ))}
     </div>
-  </section>
+
+    <!-- indice a destra -->
+    <ul class="ed-index" aria-label="Works">
+      {works.map((p, i) => (
+        <li>
+          <button type="button" class:list={['ed-thumb', i === 0 && 'is-active']} data-thumb={i} aria-label={p.titolo}>
+            <Picture img={p.thumb!} sizes="80px" />
+          </button>
+        </li>
+      ))}
+    </ul>
+  </div>
 </Layout>
 
-<script>
-  // Slideshow hero: dissolvenza automatica ogni 6s + pallini cliccabili.
-  const slides = [...document.querySelectorAll<HTMLElement>('.hero-slide')];
-  const dots = [...document.querySelectorAll<HTMLButtonElement>('.hero-dots button')];
-  if (slides.length > 1) {
-    let i = 0;
-    let timer: number | undefined;
-    const go = (n: number) => {
-      slides[i].classList.remove('is-active');
-      dots[i]?.setAttribute('aria-current', 'false');
-      i = (n + slides.length) % slides.length;
-      slides[i].classList.add('is-active');
-      dots[i]?.setAttribute('aria-current', 'true');
-    };
-    const start = () => { timer = window.setInterval(() => go(i + 1), 6000); };
-    const stop = () => window.clearInterval(timer);
-    dots.forEach((d, n) => d.addEventListener('click', () => { stop(); go(n); start(); }));
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+<style>
+  .ed { position: relative; min-height: 100dvh; padding: clamp(1.25rem, 3vw, 2.75rem); }
+
+  /* micro-etichette agli angoli */
+  .glyph { position: fixed; z-index: 2; font-size: .72rem; letter-spacing: .04em; color: var(--muted); }
+  .g-tr { top: clamp(1.1rem, 2.4vw, 2rem); right: clamp(1.1rem, 2.4vw, 2rem); }
+  .g-bl { bottom: clamp(1.1rem, 2.4vw, 2rem); left: clamp(1.1rem, 2.4vw, 2rem); }
+  .g-br { bottom: clamp(1.1rem, 2.4vw, 2rem); right: clamp(1.1rem, 2.4vw, 2rem); }
+  a.glyph:hover { color: var(--ink); }
+
+  /* colonna sinistra */
+  .ed-left { display: flex; flex-direction: column; }
+  .ed-brand { font-size: clamp(1.7rem, 2.8vw, 2.5rem); font-weight: 300; letter-spacing: -.015em; line-height: 1; }
+  .ed-brand strong { font-weight: 700; }
+  /* descrizione nella zona centrale, sopra l'immagine */
+  .ed-center { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(1.25rem, 3.5vh, 2.5rem); min-width: 0; }
+  .ed-intro { max-width: min(58ch, 100%); text-align: center; font-size: clamp(1.25rem, 2.1vw, 1.9rem); font-weight: 400; line-height: 1.3; letter-spacing: -.01em; color: var(--ink); }
+  .ed-nav { margin-top: 1.6rem; display: flex; flex-direction: column; gap: .35rem; font-size: clamp(1.1rem, 1.7vw, 1.5rem); }
+  .ed-nav a { width: max-content; }
+
+  .ed-active { margin-top: clamp(2rem, 7vh, 4.5rem); }
+  .ed-active-item { display: none; }
+  .ed-active-item.is-active { display: block; }
+  .ed-active-title { display: block; font-size: clamp(1.4rem, 2.4vw, 2.1rem); font-weight: 300; letter-spacing: -.015em; line-height: 1.05; }
+  .ed-active-meta { display: block; margin-top: .4rem; font-size: .78rem; color: var(--muted); }
+
+  /* palcoscenico centrale */
+  .ed-stage { position: relative; width: min(52vw, 64vh); aspect-ratio: 1 / 1; }
+  .ed-shot { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity .5s var(--ease); }
+  .ed-shot.is-active { opacity: 1; pointer-events: auto; }
+  .ed-shot :global(picture), .ed-shot :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  /* indice a destra */
+  .ed-index { display: flex; flex-direction: column; gap: .5rem; overflow: auto; }
+  .ed-thumb { display: block; width: clamp(54px, 6.5vw, 78px); aspect-ratio: 3 / 4; opacity: .42; transition: opacity .3s var(--ease); }
+  .ed-thumb :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .ed-thumb.is-active, .ed-thumb:hover, .ed-thumb:focus-visible { opacity: 1; }
+
+  /* ── Desktop: tre colonne, immagine centrata ───────────────────── */
+  @media (width >= 900px) {
+    .ed {
+      display: grid;
+      grid-template-columns: minmax(220px, 24vw) 1fr minmax(84px, 10vw);
+      align-items: center;
+      gap: clamp(1.5rem, 4vw, 4rem);
+      height: 100dvh;
+    }
+    .ed-left { align-self: stretch; justify-content: flex-start; padding-block: clamp(2rem, 7vh, 4.5rem); }
+    .ed-center { justify-self: stretch; align-self: center; }
+    .ed-index { justify-self: end; align-self: center; max-height: 82dvh; }
   }
+
+  /* ── Mobile/tablet: impilato ───────────────────────────────────── */
+  @media (width < 900px) {
+    .ed { display: flex; flex-direction: column; gap: 1.5rem; padding-block: clamp(2rem, 7vw, 3rem); }
+    .ed-left { order: 1; }
+    .ed-center { order: 2; width: 100%; }
+    .ed-stage { width: 100%; max-width: min(92vw, 60vh); margin-inline: auto; }
+    .ed-index { order: 3; flex-direction: row; overflow-x: auto; padding-bottom: .4rem; }
+    .ed-thumb { width: 60px; flex: 0 0 auto; }
+    .glyph { display: none; }
+  }
+</style>
+
+<script>
+  // Hover/focus su un'anteprima → cambia immagine centrale e titolo. Click → apre il progetto.
+  const shots = [...document.querySelectorAll<HTMLElement>('.ed-shot')];
+  const thumbs = [...document.querySelectorAll<HTMLElement>('.ed-thumb')];
+  const names = [...document.querySelectorAll<HTMLElement>('.ed-active-item')];
+  let cur = 0;
+
+  const setActive = (n: number) => {
+    if (n === cur || n < 0 || n >= shots.length) return;
+    [shots, thumbs, names].forEach((group) => {
+      group[cur]?.classList.remove('is-active');
+      group[n]?.classList.add('is-active');
+    });
+    shots[cur]?.setAttribute('aria-hidden', 'true');
+    shots[cur]?.setAttribute('tabindex', '-1');
+    shots[n]?.removeAttribute('aria-hidden');
+    shots[n]?.removeAttribute('tabindex');
+    cur = n;
+  };
+
+  thumbs.forEach((t, i) => {
+    t.addEventListener('mouseenter', () => setActive(i));
+    t.addEventListener('focus', () => setActive(i));
+    t.addEventListener('click', () => {
+      const href = shots[i]?.getAttribute('href');
+      if (href) window.location.href = href;
+    });
+  });
+
+  // Anche passando sul nome (colonna sinistra) si allinea l'immagine.
+  names.forEach((nEl, i) => nEl.addEventListener('mouseenter', () => setActive(i)));
 </script>
